@@ -61,7 +61,7 @@ createApp({
                 let flatSchema = this.board.flat();
                 let flatIndex = rowIndex * 3 + colIndex;
 
-                boxesList[flatIndex].innerHTML = this.marker == 'X' ? '<div class="mark x">&#10060;</div>' : '<div class="mark o"></div>';
+                boxesList[flatIndex].innerHTML = this.marker == 'X' ? '<div class="mark x">&#10060;</div>' : '<div class="mark o">O</div>';
                 boxesList[flatIndex].attributes.disabled = true;
                 let flag = false;
                 //DECREMENTO IL NUMERO TOTALE DI MOSSE PER VERIFICARE SE LA PARTITA E' FINITA O MENO
@@ -142,11 +142,13 @@ createApp({
                             boxesList[elem[1]].classList.add('lost');
                             boxesList[elem[2]].classList.add('lost');
                         }
+                        console.log(box1, box2, box3);
                     }
 
-                    if (!flatSchema.includes('')) {
+                    else if (!flatSchema.includes('') && boxesList[0]) {
                         this.gameOver = true;
                         this.winner = 3;
+                        console.log(box1, box2, box3);
                     }
                 }
             })
@@ -168,87 +170,3 @@ createApp({
         }
     }
 }).mount('#app')
-
-
-
-// //FUNZIONE CHE CALCOLA LE DIMENSIONI DEL TAVOLO DI GIOCO
-// function createGameTable() {
-
-//     let grid = document.getElementById('grid');
-//     grid.innerHTML = '';
-
-//     for (let i = 0; i < 9; i++) {
-//         let box = document.createElement('div');
-//         box.classList.add('box');
-
-//         let container = document.querySelector('.container');
-//         let height = container.clientWidth / 3;
-
-//         box.style.height = height + 'px';
-
-//         setBorderBox(box, i);
-
-//         grid.appendChild(box);
-
-//     }
-// }
-
-// //FUNZIONE CHE FA COMINCAIRE LA PARTITA
-// function startGame() {
-
-
-//     //INSERISCO IL MESSAGGIO
-//     document.querySelector('.text').innerHTML = message;
-
-//     let schema = [
-//         ['', '', ''],
-//         ['', '', ''],
-//         ['', '', '']
-//     ];
-
-//     let boxesList = document.querySelectorAll('.box');
-
-//     boxesList.forEach((box, index) => {
-//         box.addEventListener('click', function () {
-//             //CALCOLO IL VALORE DELLA CASELLA CLICCATA TROVANDO LA RIGA E LA COLONNA DI RIFERIMENTO
-//             let row = Math.floor(index / 3);
-//             let col = index % 3;
-
-//             //SE LA CASELLA CLICCATA E' VUOTA ALLORA INSERISCO IL SEGNO
-//             if (schema[row][col] === '') {
-//                 schema[row][col] = starter;
-
-//                 box.innerHTML = '<div class="mark x">&#10060;</div>';
-//                 //RENDO LO SCHEMA UN ARRAY MONODIMENSIONALE IN MODO TALE DA TROVARE UN INDICE RANDOMICO
-//                 let flatSchema = schema.flat();
-
-//                 let flag = false;
-//                 //TROVO L'INDICE RANDOMICO. SE E' GIA' STATO TROVATO, VUOL DIRE CHE E' STATO MESSO IL SEGNAPOSTO SULLO SCHEMA. ALTRIMENTI LO INSERISCO ED ESCO DAL CICLO
-//                 while (!flag) {
-//                     let randomIndex = Math.floor(Math.random() * flatSchema.length);
-//                     let pcRow = Math.floor(randomIndex / 3);
-//                     let pcCol = randomIndex % 3;
-
-//                     if (schema[pcRow][pcCol] === '') {
-//                         schema[pcRow][pcCol] = 1;
-//                         flag = true;
-
-//                         boxesList[randomIndex].innerHTML = '<div class="mark o"></div>';
-//                     }
-//                 }
-//             }
-
-
-//             console.log(schema);
-//         })
-//     });
-
-// }
-
-// document.getElementById('start').addEventListener('click', function () {
-//     document.getElementById('selections').style.display = 'block';
-
-//     document.getElementById('play').addEventListener('click', function)
-
-
-// });

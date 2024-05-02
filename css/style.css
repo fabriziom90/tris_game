@@ -43,7 +43,7 @@ header {
 }
 
 input[type=radio] {
-    transform: scale(2.5);
+    transform: scale(2);
     accent-color: #001632;
 }
 
@@ -51,6 +51,9 @@ input[type=radio] {
 #choose {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
 }
 
 .text {
@@ -128,8 +131,7 @@ input[type=radio] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 100px;
-    padding: 5px;
+    font-size: 75px;
     background-color: #fff;
 }
 
@@ -151,4 +153,17 @@ input[type=radio] {
 .lost .mark {
     background-color: #810B19;
     color: #fff;
+}
+
+
+@media screen and (min-width: 480px) {
+    #choose {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mark {
+        font-size: 100px;
+    }
 }
